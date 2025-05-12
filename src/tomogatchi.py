@@ -47,21 +47,20 @@ def main():
             face = ":)" if self.alive else "X("
             face_text = font.render(f"Pet: {face}", True, GREEN)
             screen.blit(face_text, (20, 60))
-            instructions = font.render("F: Feed  P: Play  C: Clean", True, GREEN)
+            instructions = font.render("F: Feed  P: Play  C: Clean", True, WHITE)
             screen.blit(instructions, (20, 100))
 
-
-
-    # This the  pet instance
     pet = Pet()
 
     # Game loop
     while True:
         screen.blit(background_img, (0, 0))
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
             if pet.alive and event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_f:
                     pet.feed()
@@ -70,10 +69,21 @@ def main():
                 elif event.key == pygame.K_c:
                     pet.clean()
 
+            if not pet.alive and event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    pet = Pet()  # restart
+
         if pet.alive:
             pet.update()
 
         pet.draw()
+
+        if not pet.alive:
+            restart_text = font.render(
+                "Pet has died! Press R to restart.", True, BLACK
+            )
+            screen.blit(restart_text, (20, 140))
+
         pygame.display.flip()
         clock.tick(30)
 
