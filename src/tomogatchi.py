@@ -13,6 +13,7 @@ def main():
                                             
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
+    GREEN = (0, 112, 255)
     font = pygame.font.SysFont("Arial", 24)
     clock = pygame.time.Clock()
 
@@ -42,12 +43,12 @@ def main():
 
         def draw(self):
             stats = f"Hunger: {int(self.hunger)}  Happiness: {int(self.happiness)}  Cleanliness: {int(self.cleanliness)}"
-            text = font.render(stats, True, WHITE)
+            text = font.render(stats, True, GREEN)
             screen.blit(text, (20, 20))
             face = ":)" if self.alive else "X("
-            face_text = font.render(f"Pet: {face}", True, WHITE)
+            face_text = font.render(f"Pet: {face}", True, GREEN)
             screen.blit(face_text, (20, 60))
-            instructions = font.render("F: Feed  P: Play  C: Clean", True, WHITE)
+            instructions = font.render("F: Feed  P: Play  C: Clean", True, GREEN)
             screen.blit(instructions, (20, 100))
 
 
