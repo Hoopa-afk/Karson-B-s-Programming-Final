@@ -48,5 +48,15 @@ def main():
 
 
 
+    # This the  pet instance
     pet = Pet()
+
+    # Game loop
+    while True:
+        screen.fill(WHITE)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+
+if __name__ == "__main__":
     main()
