@@ -6,7 +6,11 @@ def main():
     pygame.init()
     WIDTH, HEIGHT = 600, 400
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption("Tamagotchi Pet")
+    pygame.display.set_caption("Tamagotchi Friend")
+
+    background_img = pygame.image.load("hamster.jpg")
+    background_img = pygame.transform.scale(background_img, (WIDTH, HEIGHT))
+                                            
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     font = pygame.font.SysFont("Arial", 24)
@@ -38,12 +42,12 @@ def main():
 
         def draw(self):
             stats = f"Hunger: {int(self.hunger)}  Happiness: {int(self.happiness)}  Cleanliness: {int(self.cleanliness)}"
-            text = font.render(stats, True, BLACK)
+            text = font.render(stats, True, WHITE)
             screen.blit(text, (20, 20))
             face = ":)" if self.alive else "X("
-            face_text = font.render(f"Pet: {face}", True, BLACK)
+            face_text = font.render(f"Pet: {face}", True, WHITE)
             screen.blit(face_text, (20, 60))
-            instructions = font.render("F: Feed  P: Play  C: Clean", True, BLACK)
+            instructions = font.render("F: Feed  P: Play  C: Clean", True, WHITE)
             screen.blit(instructions, (20, 100))
 
 
@@ -53,7 +57,7 @@ def main():
 
     # Game loop
     while True:
-        screen.fill(WHITE)
+        screen.blit(background_img, (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
