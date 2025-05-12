@@ -48,4 +48,5 @@ def main():
 
 
 
+    pet = Pet()
     main()
