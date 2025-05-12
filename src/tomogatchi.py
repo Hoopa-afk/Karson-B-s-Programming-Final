@@ -1,6 +1,5 @@
 import pygame
 import sys
-import time
 
 def main():
     pygame.init()
@@ -35,7 +34,7 @@ def main():
             self.cleanliness = min(100, self.cleanliness + 10)
 
         def update(self):
-            self.hunger -= 0.1
+            self.hunger -= 0.04
             self.happiness -= 0.05
             self.cleanliness -= 0.07
             if self.hunger <= 0 or self.happiness <= 0 or self.cleanliness <= 0:
