@@ -57,6 +57,21 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                sys.exit()
+            if pet.alive and event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_f:
+                    pet.feed()
+                elif event.key == pygame.K_p:
+                    pet.play()
+                elif event.key == pygame.K_c:
+                    pet.clean()
+
+        if pet.alive:
+            pet.update()
+
+        pet.draw()
+        pygame.display.flip()
+        clock.tick(30)
 
 if __name__ == "__main__":
     main()
