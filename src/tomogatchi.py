@@ -138,6 +138,16 @@ def main():
             if self.hunger <= 0 or self.happiness <= 0 or self.cleanliness <= 0:
                 self.alive = False
 
+
+            self.poop_timer += 1
+            if self.poop_timer >= 1200 and not self.has_poop:  # ~20 seconds
+                self.has_poop = True
+                self.poop_timer = 0
+
+            if self.has_poop:
+                self.cleanliness = max(0, self.cleanliness - 0.1)
+
+
         def get_mood(self):
             avg = (self.hunger + self.happiness + self.cleanliness) / 3
             if avg > 80:
@@ -148,7 +158,7 @@ def main():
                 return "sad"
             else:
                 return "miserable"
-        
+            
 
         def draw(self):
             overlay = pygame.Surface((WIDTH, 150))
@@ -164,7 +174,7 @@ def main():
             face_text = font.render(f"Pet: {face}", True, WHITE)
             screen.blit(face_text, (20, 60))
 
-            instructions = font.render("F: Feed  P: Play  C: Clean", True, WHITE)
+            instructions = font.render("F: Feed  P: Play  C: Clean  K: Pick up Poo", True, WHITE)
             screen.blit(instructions, (20, 100))
 
             mood_text = font.render(f"Mood: {self.get_mood()}", True, WHITE)
@@ -189,7 +199,10 @@ def main():
                 else:
                     screen.blit(sprites["idle"], (250, 200))
             else:
-                screen.blit(self.dead_image, (250, 200))
+                screen.blit(self.dead_image, (260, 200))
+
+            if self.has_poop:
+                screen.blit(self.poop_image, (260, 300))  
 
                 
 
@@ -219,6 +232,11 @@ def main():
             if not pet.alive and event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     pet = Pet()
+
+            if pet.alive and event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_k:
+                    if pet.has_poop:
+                        pet.has_poop = False
 
         pet.update()
         pet.draw()
