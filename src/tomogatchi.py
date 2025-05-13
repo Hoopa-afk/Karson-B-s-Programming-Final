@@ -32,6 +32,12 @@ def main():
             
             self.clean_images = [pygame.transform.scale(pygame.image.load("pet_clean.png"), (100, 100)),
                 pygame.transform.scale(pygame.image.load("pet_clean2.png"), (100, 100))]
+            
+            self.mood_images = {"happy": pygame.transform.scale(pygame.image.load("happy.png"), (50, 50)),
+            "okay": pygame.transform.scale(pygame.image.load("okay.png"), (50, 50)),
+            "sad": pygame.transform.scale(pygame.image.load("sad.png"), (50, 50)),
+            "miserable": pygame.transform.scale(pygame.image.load("miserable.png"), (50, 50)),}
+
 
             self.state = "idle"
             self.state_timer = 0
@@ -44,6 +50,18 @@ def main():
 
             self.clean_frame = 0
             self.clean_frame_timer = 0
+
+        def get_mood(self):
+            avg = (self.hunger + self.happiness + self.cleanliness) / 3
+            if avg > 80:
+                return "happy"
+            elif avg > 50:
+                return "okay"
+            elif avg > 20:
+                return "sad"
+            else:
+                return "miserable"
+
 
         def feed(self):
             self.hunger = min(100, self.hunger + 10)
@@ -99,13 +117,13 @@ def main():
         def get_mood(self):
             avg = (self.hunger + self.happiness + self.cleanliness) / 3
             if avg > 80:
-                return "😊 Happy"
+                return "happy"
             elif avg > 50:
-                return "😐 Okay"
+                return "okay"
             elif avg > 20:
-                return "😟 Sad"
+                return "sad"
             else:
-                return "😭 Miserable"
+                return "miserable"
 
                 
 
@@ -129,6 +147,11 @@ def main():
             mood_text = font.render(f"Mood: {self.get_mood()}", True, WHITE)
             screen.blit(mood_text, (20, 130))
 
+            mood = self.get_mood()
+
+            screen.blit(mood_text, (20, 130))
+            screen.blit(self.mood_images[mood], (150, 125))
+
 
             # Choose the right animation frame
             if self.alive:
@@ -142,6 +165,8 @@ def main():
                     screen.blit(self.idle_image, (250, 200))
             else:
                 screen.blit(self.dead_image, (250, 200))
+
+                
 
     # Load background
     background_img = pygame.image.load("hamster.jpg")
@@ -172,6 +197,7 @@ def main():
 
         pet.update()
         pet.draw()
+        
 
         if not pet.alive:
             restart_text = font.render("Pet has died! Press R to restart.", True, WHITE)
