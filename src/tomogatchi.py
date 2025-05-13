@@ -159,8 +159,12 @@ def main():
         clock.tick(30)
 
 class GameManager:
-    def__init__(self, screen, font, WIDTH, HEIGHT):
-    
+    def __init__(self, screen, font, width, height):
+        self.screen = screen
+        self.font = font
+        self.WIDTH = width
+        self.HEIGHT = height
+        self.state = "main"
 
 if __name__ == "__main__":
     main()
