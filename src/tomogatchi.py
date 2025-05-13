@@ -1,4 +1,3 @@
-import os
 import pygame
 import sys
 
@@ -7,10 +6,6 @@ def main():
     WIDTH, HEIGHT = 600, 400
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Tamagotchi Friend")
-
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    assets_path = os.path.join(os.path.dirname(current_dir), 'assets')
-    idle_image = pygame.image.load(os.path.join(assets_path, 'pet_idle.png')).convert_alpha()
 
     background_img = pygame.image.load("hamster.jpg")
     background_img = pygame.transform.scale(background_img, (WIDTH, HEIGHT))
@@ -61,6 +56,8 @@ def main():
     # Game loop
     while True:
         screen.blit(background_img, (0, 0))
+        background_img = pygame.image.load("hamster.jpg")
+        background_img = pygame.transform.scale(background_img, (WIDTH, HEIGHT))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
