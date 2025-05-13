@@ -95,10 +95,13 @@ def main():
 
         def update(self):
 
-            self.age += 1
-            if self.age == 900:  # After ~30 seconds
-                self.stage = "adult"
+            mood = self.get_mood()
+            if mood in ["happy", "okay"]:
+                self.age += 1
+                if self.age == 900:
+                    self.stage = "adult"
 
+                    
             # Decrease stats
             self.hunger = max(0, self.hunger - 0.04)
             self.happiness = max(0, self.happiness - 0.05)
@@ -164,6 +167,10 @@ def main():
             mood = self.get_mood()
             screen.blit(mood_text, (20, 130))
             screen.blit(self.mood_images[mood], (120, 125))
+
+            pygame.draw.rect(screen, WHITE, (20, 170, 200, 10))
+            progress = min(1.0, self.age / 900)  # this caps at 100 %
+            pygame.draw.rect(screen, BLUE, (20, 170, int(200 * progress), 10))
 
 
             # Choose the right animation frame
