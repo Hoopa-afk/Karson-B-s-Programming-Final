@@ -166,5 +166,8 @@ class GameManager:
         self.HEIGHT = height
         self.state = "main"
 
+        self.pet = Pet(font, screen)  # updated to accept screen/font
+        self.minigame = TreatsGame(screen, width, height, font)
+
 if __name__ == "__main__":
     main()
