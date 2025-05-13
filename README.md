@@ -19,6 +19,21 @@ A virtual pet game built with Pygame where you care for your pet by feeding, cle
 
 ---
 
+🚀 How to Run
+Make sure all image files are in the same directory as the game script:
+
+pet_idle.png, pet_feed.png, pet_feed2.png, etc.
+
+adult_idle.png, adult_feed.png, etc.
+
+happy.png, sad.png, etc.
+
+poop.png
+
+hamster.jpg (background)
+
+---
+
 ## 🎮Controls
 F – Feed
 P – Play
