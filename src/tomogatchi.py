@@ -21,6 +21,9 @@ def main():
             self.alive = True
             self.age = 0  # Tracks growth
             self.stage = "baby"
+            self.poop_timer = 0
+            self.poop_present = False
+
 
             # Load all image set
             self.sprites = {
@@ -133,6 +136,14 @@ def main():
             # Check if pet dies
             if self.hunger <= 0 or self.happiness <= 0 or self.cleanliness <= 0:
                 self.alive = False
+
+            if not self.poop_present:
+                self.poop_timer += 1
+                if self.poop_timer >= 600:  # Poops after ~20 seconds at 30 FPS
+                    self.poop_present = True
+                    self.poop_timer = 0
+                    self.cleanliness -= 10  # Lose some cleanliness
+
 
         def get_mood(self):
             avg = (self.hunger + self.happiness + self.cleanliness) / 3
