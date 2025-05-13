@@ -22,19 +22,29 @@ def main():
             self.age = 0  # Tracks growth
             self.stage = "baby"
 
-            # Load all image sets
-            self.idle_image = pygame.transform.scale(pygame.image.load("pet_idle.png"), (100, 100))
+            # Load all image set
+            self.sprites = {
+            "baby": {
+                "idle": pygame.transform.scale(pygame.image.load("pet_idle.png"), (100, 100)),
+                "feed": [pygame.transform.scale(pygame.image.load("pet_feed.png"), (100, 100)),
+                         pygame.transform.scale(pygame.image.load("pet_feed2.png"), (100, 100))],
+                "play": [pygame.transform.scale(pygame.image.load("pet_play.png"), (100, 100)),
+                         pygame.transform.scale(pygame.image.load("pet_play2.png"), (100, 100))],
+                "clean": [pygame.transform.scale(pygame.image.load("pet_clean.png"), (100, 100)),
+                          pygame.transform.scale(pygame.image.load("pet_clean2.png"), (100, 100))]
+            },
+            "adult": {
+                "idle": pygame.transform.scale(pygame.image.load("adult_idle.png"), (100, 100)),
+                "feed": [pygame.transform.scale(pygame.image.load("adult_feed.png"), (100, 100)),
+                         pygame.transform.scale(pygame.image.load("adult_feed2.png"), (100, 100))],
+                "play": [pygame.transform.scale(pygame.image.load("adult_play.png"), (100, 100)),
+                         pygame.transform.scale(pygame.image.load("adult_play2.png"), (100, 100))],
+                "clean": [pygame.transform.scale(pygame.image.load("adult_clean.png"), (100, 100)),
+                          pygame.transform.scale(pygame.image.load("adult_clean2.png"), (100, 100))]}}
+            
             self.dead_image = pygame.transform.scale(pygame.image.load("pet_dead.png"), (100, 100))
-
-            self.feed_images = [pygame.transform.scale(pygame.image.load("pet_feed.png"), (100, 100)),
-                pygame.transform.scale(pygame.image.load("pet_feed2.png"), (100, 100))]
-
-            self.play_images = [pygame.transform.scale(pygame.image.load("pet_play.png"), (100, 100)),
-                pygame.transform.scale(pygame.image.load("pet_play2.png"), (100, 100))]
             
-            self.clean_images = [pygame.transform.scale(pygame.image.load("pet_clean.png"), (100, 100)),
-                pygame.transform.scale(pygame.image.load("pet_clean2.png"), (100, 100))]
-            
+
             self.mood_images = {"happy": pygame.transform.scale(pygame.image.load("happy.png"), (50, 50)),
             "okay": pygame.transform.scale(pygame.image.load("okay.png"), (50, 50)),
             "sad": pygame.transform.scale(pygame.image.load("sad.png"), (50, 50)),
@@ -165,7 +175,9 @@ def main():
                 elif self.state == "clean":
                     screen.blit(self.clean_images[self.clean_frame], (250, 200))
                 else:
-                    screen.blit(self.idle_image, (250, 200))
+                    sprites = self.sprites[self.stage]
+                    screen.blit(sprites["idle"], (250, 200))
+
             else:
                 screen.blit(self.dead_image, (250, 200))
 
