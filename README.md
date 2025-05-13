@@ -5,7 +5,7 @@ This is the toughest project I have ever made, and it's just a simple pet simula
 ---
 
 # 🐹Tamagotchi Friend
-A virtual pet game built with Pygame where you care for your pet by feeding, cleaning, and playing with it. Watch it grow, monitor its mood, and don’t forget to clean up its poop! Seriously, it's gross.
+A virtual pet game built with Pygame where you care for your pet by feeding, cleaning, and playing with it! Watch it grow, monitor its mood, and don’t forget to clean up its poop! Seriously, it's gross.
 
 ---
 
@@ -19,7 +19,7 @@ A virtual pet game built with Pygame where you care for your pet by feeding, cle
 
 ---
 
-🚀 How to Run
+### 🚀How to Run
 Make sure all image files are in the same directory as the game script:
 
 pet_idle.png, pet_feed.png, pet_feed2.png, etc.
