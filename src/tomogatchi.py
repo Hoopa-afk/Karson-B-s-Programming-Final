@@ -96,13 +96,20 @@ def main():
             if self.hunger <= 0 or self.happiness <= 0 or self.cleanliness <= 0:
                 self.alive = False
 
+                
+
         def draw(self):
+            overlay = pygame.Surface((WIDTH, 150))
+            overlay.set_alpha(100)
+            overlay.fill((0, 0, 0))
+            screen.blit(overlay, (0, 0))
+
             stats = f"Hunger: {int(self.hunger)}  Happiness: {int(self.happiness)}  Cleanliness: {int(self.cleanliness)}"
-            text = font.render(stats, True, BLUE)
+            text = font.render(stats, True, WHITE)
             screen.blit(text, (20, 20))
 
             face = ":)" if self.alive else "X("
-            face_text = font.render(f"Pet: {face}", True, BLUE)
+            face_text = font.render(f"Pet: {face}", True, WHITE)
             screen.blit(face_text, (20, 60))
 
             instructions = font.render("F: Feed  P: Play  C: Clean", True, WHITE)
@@ -158,23 +165,6 @@ def main():
         pygame.display.flip()
         clock.tick(30)
 
-class GameManager:
-    def __init__(self, screen, font, width, height):
-        self.screen = screen
-        self.font = font
-        self.WIDTH = width
-        self.HEIGHT = height
-        self.state = "main"
-
-        self.pet = Pet(font, screen)  # updated to accept screen/font
-        self.minigame = TreatsGame(screen, width, height, font)
-
-    def handle_event(self, event):
-        if self.state == "main":
-            if event.type == pygame.KEYDOWN:
-                if self.pet.alive:
-                    if event.key == pygame.K_f:
-                        self.pet.feed()
 
 
 if __name__ == "__main__":
