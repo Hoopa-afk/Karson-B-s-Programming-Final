@@ -8,7 +8,6 @@ def main():
     pygame.display.set_caption("Tamagotchi Friend")
 
     WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
     BLUE = (0, 112, 255)
     font = pygame.font.SysFont("Arial", 24)
     clock = pygame.time.Clock()
