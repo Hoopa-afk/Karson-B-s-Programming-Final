@@ -96,6 +96,17 @@ def main():
             if self.hunger <= 0 or self.happiness <= 0 or self.cleanliness <= 0:
                 self.alive = False
 
+        def get_mood(self):
+            avg = (self.hunger + self.happiness + self.cleanliness) / 3
+            if avg > 80:
+                return "😊 Happy"
+            elif avg > 50:
+                return "😐 Okay"
+            elif avg > 20:
+                return "😟 Sad"
+            else:
+                return "😭 Miserable"
+
                 
 
         def draw(self):
@@ -114,6 +125,10 @@ def main():
 
             instructions = font.render("F: Feed  P: Play  C: Clean", True, WHITE)
             screen.blit(instructions, (20, 100))
+
+            mood_text = font.render(f"Mood: {self.get_mood()}", True, WHITE)
+            screen.blit(mood_text, (20, 130))
+
 
             # Choose the right animation frame
             if self.alive:
