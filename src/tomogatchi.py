@@ -21,7 +21,10 @@ def main():
             self.alive = True
             self.age = 0  # Tracks growth
             self.stage = "baby"
-            
+            self.poop_timer = 0
+            self.has_poop = False
+            self.poop_image = pygame.transform.scale(pygame.image.load("poop.png"), (40, 40))
+
 
             # Load all image set
             self.sprites = {
