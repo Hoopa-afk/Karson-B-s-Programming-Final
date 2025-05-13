@@ -18,10 +18,6 @@ A virtual pet game built with Pygame where you care for your pet by feeding, cle
 - **Animated sprite changes** for actions and mood, all drawn by me  
 
 ---
-## 🖼️ Screenshot
-![Screenshot of Tamagotchi Game](game_screenshot.png)
-
----
 
 ## 🛠️ Requirements
 - Python 3.x  
