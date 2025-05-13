@@ -175,7 +175,7 @@ def main():
 
             # Choose the right animation frame
             if self.alive:
-                sprites = self.sprites[self.stage]  # Get correct sprite set based on stage
+                sprites = self.sprites[self.stage]
                 if self.state == "feed":
                     screen.blit(sprites["feed"][self.feed_frame], (250, 200))
                 elif self.state == "play":
@@ -184,6 +184,8 @@ def main():
                     screen.blit(sprites["clean"][self.clean_frame], (250, 200))
                 else:
                     screen.blit(sprites["idle"], (250, 200))
+            else:
+                screen.blit(self.dead_image, (250, 200))
 
                 
 
