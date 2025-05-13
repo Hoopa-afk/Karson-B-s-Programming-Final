@@ -158,5 +158,9 @@ def main():
         pygame.display.flip()
         clock.tick(30)
 
+class GameManager:
+    def__init__(self, screen, font, WIDTH, HEIGHT):
+    
+
 if __name__ == "__main__":
     main()
