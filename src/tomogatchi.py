@@ -23,6 +23,9 @@ def main():
             self.alive = True
             self.idle_image = pygame.image.load("pet_idle.png")
             self.idle_image = pygame.transform.scale(self.idle_image, (100, 100))
+            self.dead_image = pygame.image.load("pet_dead.png")
+            self.dead_image = pygame.transform.scale(self.dead_image, (100, 100))
+
 
 
         def feed(self):
@@ -52,6 +55,9 @@ def main():
             screen.blit(instructions, (20, 100))
             if self.alive:
                 screen.blit(self.idle_image, (250, 200))
+            else:
+                screen.blit(self.dead_image, (250, 200))
+
 
     pet = Pet()
 
