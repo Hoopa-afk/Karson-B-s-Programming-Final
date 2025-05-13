@@ -19,6 +19,14 @@ A virtual pet game built with Pygame where you care for your pet by feeding, cle
 
 ---
 
+## 🎮Controls
+F – Feed
+P – Play
+K – Clean
+R – Restart after death
+
+---
+
 ## 🛠️ Requirements
 - Python 3.x  
 - [Pygame](https://www.pygame.org/)  
