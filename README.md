@@ -17,7 +17,7 @@ A virtual pet game built with Pygame where you care for your pet by feeding, cle
 
 ---
 
-![Game Screenshot](images/game.png)
+![Game Screenshot](game.png)
 
 
 ---
