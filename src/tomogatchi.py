@@ -19,6 +19,8 @@ def main():
             self.happiness = 50
             self.cleanliness = 50
             self.alive = True
+            self.age = 0  # Tracks growth
+            self.stage = "baby"
 
             # Load all image sets
             self.idle_image = pygame.transform.scale(pygame.image.load("pet_idle.png"), (100, 100))
@@ -82,6 +84,11 @@ def main():
             self.clean_frame_timer = 0
 
         def update(self):
+
+            self.age += 1
+            if self.age == 900:  # After ~30 seconds
+                self.stage = "adult"
+
             # Decrease stats
             self.hunger = max(0, self.hunger - 0.04)
             self.happiness = max(0, self.happiness - 0.05)
@@ -124,8 +131,7 @@ def main():
                 return "sad"
             else:
                 return "miserable"
-
-                
+        
 
         def draw(self):
             overlay = pygame.Surface((WIDTH, 150))
@@ -145,12 +151,9 @@ def main():
             screen.blit(instructions, (20, 100))
 
             mood_text = font.render(f"Mood: {self.get_mood()}", True, WHITE)
-            screen.blit(mood_text, (20, 130))
-
             mood = self.get_mood()
-
             screen.blit(mood_text, (20, 130))
-            screen.blit(self.mood_images[mood], (150, 125))
+            screen.blit(self.mood_images[mood], (120, 125))
 
 
             # Choose the right animation frame
@@ -201,7 +204,7 @@ def main():
 
         if not pet.alive:
             restart_text = font.render("Pet has died! Press R to restart.", True, WHITE)
-            screen.blit(restart_text, (20, 140))
+            screen.blit(restart_text, (20, 160))
 
         pygame.display.flip()
         clock.tick(30)
