@@ -169,5 +169,13 @@ class GameManager:
         self.pet = Pet(font, screen)  # updated to accept screen/font
         self.minigame = TreatsGame(screen, width, height, font)
 
+    def handle_event(self, event):
+        if self.state == "main":
+            if event.type == pygame.KEYDOWN:
+                if self.pet.alive:
+                    if event.key == pygame.K_f:
+                        self.pet.feed()
+
+
 if __name__ == "__main__":
     main()
