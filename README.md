@@ -1,2 +1,3 @@
 # Karson-B-s-Programming-Final
 This is where the hardest part comes in, making a final class project...
+This is the toughest project I have ever made, and it's just a pet simulator, that says something more about me.
