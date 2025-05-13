@@ -1,3 +1,4 @@
+import os
 import pygame
 import sys
 
@@ -7,12 +8,16 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Tamagotchi Friend")
 
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    assets_path = os.path.join(os.path.dirname(current_dir), 'assets')
+    idle_image = pygame.image.load(os.path.join(assets_path, 'pet_idle.png')).convert_alpha()
+
     background_img = pygame.image.load("hamster.jpg")
     background_img = pygame.transform.scale(background_img, (WIDTH, HEIGHT))
                                             
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
-    GREEN = (0, 112, 255)
+    BLUE = (0, 112, 255)
     font = pygame.font.SysFont("Arial", 24)
     clock = pygame.time.Clock()
 
@@ -23,6 +28,7 @@ def main():
             self.happiness = 50
             self.cleanliness = 50
             self.alive = True
+
 
         def feed(self):
             self.hunger = min(100, self.hunger + 10)
@@ -42,10 +48,10 @@ def main():
 
         def draw(self):
             stats = f"Hunger: {int(self.hunger)}  Happiness: {int(self.happiness)}  Cleanliness: {int(self.cleanliness)}"
-            text = font.render(stats, True, GREEN)
+            text = font.render(stats, True, BLUE)
             screen.blit(text, (20, 20))
             face = ":)" if self.alive else "X("
-            face_text = font.render(f"Pet: {face}", True, GREEN)
+            face_text = font.render(f"Pet: {face}", True, BLUE)
             screen.blit(face_text, (20, 60))
             instructions = font.render("F: Feed  P: Play  C: Clean", True, WHITE)
             screen.blit(instructions, (20, 100))
@@ -71,7 +77,7 @@ def main():
 
             if not pet.alive and event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
-                    pet = Pet()  # restart
+                    pet = Pet() 
 
         if pet.alive:
             pet.update()
