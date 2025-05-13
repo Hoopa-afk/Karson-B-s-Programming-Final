@@ -7,8 +7,6 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Tamagotchi Friend")
 
-    background_img = pygame.image.load("hamster.jpg")
-    background_img = pygame.transform.scale(background_img, (WIDTH, HEIGHT))
                                             
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
@@ -23,6 +21,8 @@ def main():
             self.happiness = 50
             self.cleanliness = 50
             self.alive = True
+            self.idle_image = pygame.image.load("pet_idle.png")
+            self.idle_image = pygame.transform.scale(self.idle_image, (100, 100))
 
 
         def feed(self):
@@ -35,9 +35,9 @@ def main():
             self.cleanliness = min(100, self.cleanliness + 10)
 
         def update(self):
-            self.hunger -= 0.04
-            self.happiness -= 0.05
-            self.cleanliness -= 0.07
+            self.hunger = max(0, self.hunger - 0.04)
+            self.happiness = max(0, self.happiness - 0.05)
+            self.cleanliness = max(0, self.cleanliness - 0.07)
             if self.hunger <= 0 or self.happiness <= 0 or self.cleanliness <= 0:
                 self.alive = False
 
@@ -50,14 +50,17 @@ def main():
             screen.blit(face_text, (20, 60))
             instructions = font.render("F: Feed  P: Play  C: Clean", True, WHITE)
             screen.blit(instructions, (20, 100))
+            if self.alive:
+                screen.blit(self.idle_image, (250, 200))
 
     pet = Pet()
 
+    background_img = pygame.image.load("hamster.jpg")
+    background_img = pygame.transform.scale(background_img, (WIDTH, HEIGHT))
+    
     # Game loop
     while True:
         screen.blit(background_img, (0, 0))
-        background_img = pygame.image.load("hamster.jpg")
-        background_img = pygame.transform.scale(background_img, (WIDTH, HEIGHT))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -75,6 +78,7 @@ def main():
             if not pet.alive and event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     pet = Pet() 
+        screen.blit(background_img, (0, 0))
 
         if pet.alive:
             pet.update()
@@ -83,7 +87,7 @@ def main():
 
         if not pet.alive:
             restart_text = font.render(
-                "Pet has died! Press R to restart.", True, BLACK
+                "Pet has died! Press R to restart.", True, WHITE
             )
             screen.blit(restart_text, (20, 140))
 
